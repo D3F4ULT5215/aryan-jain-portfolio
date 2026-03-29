@@ -3,7 +3,7 @@
     --bg-color: #E5E4E3;
     --text-primary: #000000;
     --text-secondary: #8B8B8B;
-    --font-heading: 'Anton', sans-serif;
+    --font-Feading: 'Anton', sans-serif;
     --font-mono: 'Azeret Mono', monospace;
     --font-hand: 'Caveat', cursive;
     --font-body: 'Inter', sans-serif;
@@ -292,6 +292,7 @@ body {
     font-size: 2rem;
     text-align: center;
     position: absolute;
+    top: 20rem;
     bottom: 0.5rem;
     width: 100%;
     left: 0;
