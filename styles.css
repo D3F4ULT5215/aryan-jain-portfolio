@@ -539,7 +539,8 @@ body {
 .experience-container {
     flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .experience-list {
@@ -641,7 +642,7 @@ body {
     font-family: var(--font-body);
     font-size: 1.2rem;
     line-height: 1.6;
-    max-width: 600px;
+    max-width: 100%;
     color: #444;
     padding-left: 1.5rem;
     list-style-type: square;
@@ -671,6 +672,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 6rem 0 4rem 0;
+    margin-top: auto;
 }
 
 .trophy-link {
@@ -1088,111 +1090,149 @@ body {
 .back-link:hover { color: #aaa; }
 
 .book-container {
-    width: 600px;
-    height: 400px;
-    perspective: 2000px; /* 3D effect base */
-    position: relative;
-    z-index: 10;
-    transform: translateY(20px);
-}
-
-.book {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0; left: 0;
-    transform-style: preserve-3d;
-}
-
-.paper {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform-style: preserve-3d;
-    transform-origin: left center;
-    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-    cursor: auto; 
-}
-
-.front, .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    background-color: var(--bg-color);
-    border: 4px solid var(--text-primary);
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.flip-book {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    display: none; /* StPageFlip makes it visible upon load */
+}
+
+/* -- StPageFlip Page Styling -- */
+.page {
+    background-color: #fcf9f2; /* Old paper tint */
+    color: var(--text-primary);
     overflow: hidden;
+    border: solid 1px #e8e2d2; 
 }
 
-.front {
-    z-index: 2;
-    transform: rotateY(0deg);
+.page-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 2rem 2rem 2rem;
+    position: relative;
+    box-sizing: border-box;
+    /* Subtle paper noise/texture via gradient */
+    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.03) 100%);
 }
 
-.back {
-    z-index: 1;
-    transform: rotateY(180deg);
-}
-
-/* Hardcover styling */
-#p1 .front, #p4 .front {
+/* Hard Cover specific overrides */
+.page[data-density="hard"] {
     background-color: var(--text-primary);
     color: var(--bg-color);
-    border: 4px solid var(--bg-color);
+    border: 2px solid #222;
 }
-#p1 .front .cover-title, #p4 .front .cover-title {
-    color: var(--bg-color);
+
+.page[data-density="hard"] .page-content {
+    background: none;
+    justify-content: center; /* Center the title perfectly */
 }
+
+.inside-cover {
+    /* Textured pattern for inside hard covers */
+    background: repeating-linear-gradient(45deg, #111, #111 10px, #181818 10px, #181818 20px) !important;
+}
+
 .cover-title {
     font-family: var(--font-heading);
     font-size: 4rem;
     line-height: 0.9;
     text-align: center;
     letter-spacing: -2px;
+    color: var(--bg-color);
 }
 
-/* Cert pages */
+.cover-subtitle {
+    font-family: var(--font-mono);
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #999;
+    letter-spacing: 2px;
+}
+
+/* Add realistic shadows at the binding (spine) of the book */
+.page.--left .page-content {
+    box-shadow: inset -10px 0 30px -10px rgba(0,0,0,0.5);
+}
+
+.page.--right .page-content {
+    box-shadow: inset 10px 0 30px -10px rgba(0,0,0,0.5);
+}
+
+/* Thin fold line */
+.page.--right .page-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 100%);
+}
+
+.page.--left .page-content::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to left, rgba(0,0,0,0.2) 0%, transparent 100%);
+}
+
+/* Cert Content */
 .cert-name {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 3rem; /* Adjusted slightly down from 3.5 to fit better */
     text-align: center;
     line-height: 1;
-    margin: 1rem 0;
+    margin: 0 0 1rem 0;
     color: var(--text-primary);
+    width: 100%;
+}
+
+.cert-image-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cert-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: 4px solid var(--text-primary);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
+    background-color: #fff;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cert-img:hover {
+    transform: scale(1.03);
 }
 
 .cert-stamp {
     font-family: var(--font-mono);
     font-size: 1rem;
-    color: rgb(70, 70, 70);
+    color: var(--text-primary);
     transform: rotate(-10deg);
     margin-top: 2rem;
-    border: 2px solid rgb(70, 70, 70);
+    border: 3px solid var(--text-primary);
+    font-weight: 800;
     padding: 0.5rem 1rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
-
-/* Page flipping class applied by JS */
-.flipped {
-    transform: rotateY(-180deg);
-}
-
-/* Base layering */
-#p1 { z-index: 6; }
-#p2 { z-index: 5; }
-#p3 { z-index: 4; }
-#p4 { z-index: 3; }
 
 @media(max-width: 1024px) {
-    .book-container { width: 90vw; height: 50vh; }
     .cover-title { font-size: 3rem; }
-    .cert-name { font-size: 1.5rem; }
+    .cert-name { font-size: 2rem; }
+    .cert-image-container { margin-top: 0.5rem; }
 }
