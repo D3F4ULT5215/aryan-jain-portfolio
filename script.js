@@ -15,14 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(raf);
 
-    /* --- Parallax Floating Accents --- */
+    /* --- Parallax Floating Accents & Nav Email Fade --- */
     const parallaxAccents = document.querySelectorAll('.parallax-accent');
+    const navEmail = document.querySelector('.nav-email');
     lenis.on('scroll', (e) => {
         const scrollY = e.animatedScroll || window.scrollY;
         parallaxAccents.forEach(accent => {
             const speed = accent.getAttribute('data-speed');
             accent.style.transform = `translateY(${scrollY * speed}px)`;
         });
+
+        // Fade out nav-email as we scroll down to avoid text overlap
+        if (navEmail) {
+            const opacity = Math.max(0, 1 - (scrollY / 300));
+            navEmail.style.opacity = opacity;
+            navEmail.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+        }
     });
     /* --- 1. Custom Cursor Implementation --- */
     const cursor = document.getElementById('cursor');
