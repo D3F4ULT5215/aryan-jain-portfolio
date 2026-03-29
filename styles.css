@@ -242,7 +242,7 @@ body {
 /* POLAROID STYLES */
 .polaroid {
     background: #fff;
-    padding: 1rem 1rem 3.5rem 1rem;
+    padding: 1rem;
     box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     border: 1px solid #ddd;
     position: relative;
@@ -291,12 +291,10 @@ body {
     font-family: var(--font-hand);
     font-size: 2rem;
     text-align: center;
-    position: absolute;
-    top: 20rem;
-    bottom: 0.5rem;
     width: 100%;
-    left: 0;
     color: #333;
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 /* --- SCROLL INDICATOR --- */
