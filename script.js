@@ -174,8 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute('href');
+            if (targetId === '#achievements-modal') return; // Bypass transition for modal
+            
+            e.preventDefault();
             
             // Start "unloading" (slide up from bottom)
             transitionOverlay.style.transition = 'top 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
@@ -319,6 +321,103 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
                 toggleModal(false);
+            }
+        });
+    }
+
+    /* --- 7. Achievements Modal Logic --- */
+    const achievementsBtn = document.getElementById('open-achievements-btn');
+    const achievementsModal = document.getElementById('achievements-modal');
+    const closeAchievementsBtn = document.getElementById('close-achievements-btn');
+    const achievementsBackdrop = document.getElementById('close-achievements-backdrop');
+
+    if (achievementsModal && achievementsBtn) {
+        const toggleAchievementsModal = (state, e) => {
+            if (e && e.preventDefault) e.preventDefault();
+            if (state) {
+                achievementsModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                achievementsModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+
+        achievementsBtn.addEventListener('click', (e) => toggleAchievementsModal(true, e));
+        if (closeAchievementsBtn) closeAchievementsBtn.addEventListener('click', () => toggleAchievementsModal(false));
+        if (achievementsBackdrop) achievementsBackdrop.addEventListener('click', () => toggleAchievementsModal(false));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && achievementsModal.classList.contains('active')) {
+                toggleAchievementsModal(false);
+            }
+        });
+    }
+
+    /* --- 8. Project Image Modal Logic --- */
+    const projectPolaroids = document.querySelectorAll('.project-polaroid');
+    const projectModal = document.getElementById('project-modal');
+    const projectModalImg = document.getElementById('project-modal-img');
+    const projectModalCaption = document.getElementById('project-modal-caption');
+    const closeProjectBtn = document.getElementById('close-project-btn');
+    const closeProjectBackdrop = document.getElementById('close-project-backdrop');
+
+    if (projectModal && projectPolaroids.length > 0) {
+        const toggleProjectModal = (state, imgSrc, captionText) => {
+            if (state) {
+                if (imgSrc.includes('url(')) {
+                    // Extract URL to show actual image naturally without cutting it
+                    const match = imgSrc.match(/url\(["']?([^"']+)["']?\)/);
+                    if (match && match[1]) {
+                        projectModalImg.src = match[1];
+                        projectModalImg.style.backgroundImage = 'none';
+                    }
+                } else {
+                    // Fallback for CSS gradients
+                    projectModalImg.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; // Transparent 1x1
+                    projectModalImg.style.backgroundImage = imgSrc;
+                }
+                
+                if (projectModalCaption) projectModalCaption.textContent = captionText;
+                
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+
+        projectPolaroids.forEach(polaroid => {
+            polaroid.style.cursor = 'pointer';
+            
+            // Allow custom cursor interaction
+            polaroid.addEventListener('mouseenter', () => document.getElementById('cursor').classList.add('hovering'));
+            polaroid.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('hovering'));
+            
+            polaroid.addEventListener('click', () => {
+                const imgDiv = polaroid.querySelector('.polaroid-image');
+                const captionDiv = polaroid.querySelector('.polaroid-caption');
+                let imgSrc = imgDiv ? getComputedStyle(imgDiv).backgroundImage : '';
+                
+                if(imgSrc && imgSrc !== 'none') {
+                    toggleProjectModal(true, imgSrc, captionDiv ? captionDiv.textContent : '');
+                }
+            });
+        });
+
+        // Add specific image-hovering cursor for the big modal image so it doesn't disappear due to blend-modes
+        if (projectModalImg) {
+            projectModalImg.addEventListener('mouseenter', () => document.getElementById('cursor').classList.add('image-hovering'));
+            projectModalImg.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('image-hovering'));
+        }
+
+        if (closeProjectBtn) closeProjectBtn.addEventListener('click', () => toggleProjectModal(false));
+        if (closeProjectBackdrop) closeProjectBackdrop.addEventListener('click', () => toggleProjectModal(false));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+                toggleProjectModal(false);
             }
         });
     }

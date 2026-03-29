@@ -99,7 +99,7 @@
                 <!-- Project 1 -->
                 <div class="project-item">
                     <div class="polaroid project-polaroid tilt-right" style="--rotation: 5deg;">
-                        <div class="polaroid-image project-placeholder-1"></div>
+                        <div class="polaroid-image project-placeholder-1" style="background-image: url('SIH.jpeg');"></div>
                         <div class="polaroid-caption hand-drawn">AI Traffic System</div>
                         <div class="polaroid-tags">
                             <span class="tag">PYTHON / ML</span>
@@ -117,7 +117,7 @@
                     <div id="bubble-zone" class="bubble-zone"></div>
                     
                     <div class="polaroid project-polaroid tilt-left" style="--rotation: -4deg;">
-                        <div class="polaroid-image project-placeholder-2"></div>
+                        <div class="polaroid-image project-placeholder-2" style="background-image: url('LNM_hacks.png');"></div>
                         <div class="polaroid-caption hand-drawn">RAG Application</div>
                         <div class="polaroid-tags">
                             <span class="tag">LLMs / RAG</span>
@@ -130,7 +130,12 @@
                     </div>
                 </div>
                 <!-- Project 3 -->
-                <div class="project-item">
+                <div class="project-item" style="position: relative;">
+                    <!-- LEFT LEGO DECORATION -->
+                    <div style="position: absolute; left: 2%; top: 50%; transform: translateY(-50%) rotate(-25deg); opacity: 1; z-index: 5; font-size: initial; color: initial; font-family: initial;">
+                        <div class="lego-block lego-blue"></div>
+                    </div>
+                    
                     <div class="polaroid project-polaroid tilt-right" style="--rotation: 5deg;">
                         <div class="polaroid-image project-placeholder-3" style="background-image: url('RECKON.JPG');"></div>
                         <div class="polaroid-caption hand-drawn">Tri-modal AI Emotion System</div>
@@ -139,9 +144,19 @@
                             <span class="tag">NLP</span>
                         </div>
                     </div>
+                    
                     <div class="project-details">
                         <p>Built a tri-modal AI system to detect emotions from facial expressions, speech, and text, using InsightFace and Wav2Vec2, along with an emotion-aware chatbot powered by LangChain and Gemini 2.5 Flash API.</p>
                         <p class="achievement">🚀 Participated at RECKON 7.0</p>
+                    </div>
+
+                    <!-- RIGHT LEGO DECORATION & TEXT -->
+                    <div style="position: absolute; right: -50%; top: 50%; transform: translateY(-50%) rotate(12deg); opacity: 1; z-index: 5; display: flex; flex-direction: column; align-items: right; font-size: initial; color: initial; font-family: initial; mix-blend-mode: normal;">
+                        <h3 class="hand-drawn" style="font-size: 3rem; color: #e53e3e; transform: rotate(-5deg); white-space: nowrap; text-shadow: 2px 2px 0 var(--bg-color);">LET'S BUILD!</h3>
+                        <div style="display: flex; gap: 8px; transform: rotate(8deg); margin-top: 5px;">
+                            <div class="lego-block lego-yellow"></div>
+                            <div class="lego-block lego-red" style="transform: translateY(-15px) rotate(-8deg);"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,7 +221,7 @@
 
                 <!-- Trophy Button -->
                 <div class="trophy-container">
-                    <a href="achievements.html" class="trophy-link magnetic">
+                    <a href="#achievements-modal" class="trophy-link magnetic" id="open-achievements-btn">
                         <div class="huge-trophy">🏆</div>
                         <h3 class="trophy-text">ACHIEVEMENTS</h3>
                     </a>
@@ -250,6 +265,35 @@
                 <div class="resume-title">Aryan Jain</div>
                 <a href="aryan-jain-resume.pdf" download class="resume-download-btn">DOWNLOAD RESUME</a>
             </div>
+        </div>
+    </div>
+
+    <!-- Achievements Modal -->
+    <div id="achievements-modal" class="resume-modal" style="align-items: center;">
+        <div class="resume-modal-backdrop" id="close-achievements-backdrop"></div>
+        <div class="polaroid resume-polaroid" style="--rotation: 2deg; max-width: 900px; padding: 3rem;">
+            <button id="close-achievements-btn" class="close-btn" style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; background: none; border: none; font-family: var(--font-heading); color: var(--text-primary); z-index: 10;">X</button>
+            <h2 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 2rem; text-align: center; color: var(--text-primary); text-transform: uppercase;">Certifications</h2>
+            <ul style="font-family: var(--font-mono); font-size: 1.2rem; line-height: 2.5; list-style-position: inside; color: #333; margin-bottom: 2rem; text-align: left;">
+                <li><strong>C Language</strong></li>
+                <li><strong>Python Basics</strong></li>
+                <li><strong>Intro to Java</strong></li>
+                <li><strong>Machine Learning</strong></li>
+                <li><strong>Operating Systems</strong></li>
+                <li><strong>Innovation, Business Models and Entrepreneurship</strong></li>
+                <li><strong>Ethics in Engineering Practice</strong></li>
+            </ul>
+            <div class="polaroid-caption hand-drawn" style="text-align: center; position: relative;">My Achievements</div>
+        </div>
+    </div>
+
+    <!-- Project Image Modal -->
+    <div id="project-modal" class="resume-modal" style="align-items: center;">
+        <div class="resume-modal-backdrop" id="close-project-backdrop"></div>
+        <div class="polaroid project-modal-polaroid" style="--rotation: 0deg; max-width: 95vw; max-height: 95vh; padding: 1rem 1rem 5rem 1rem; position: relative;">
+            <button id="close-project-btn" class="close-btn" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); color: #333; z-index: 10;">X</button>
+            <img id="project-modal-img" src="" alt="Project Image" style="max-width: 100%; max-height: calc(95vh - 6rem); object-fit: contain; display: block; background: #eee; border: 1px solid #ccc; cursor: none;">
+            <div id="project-modal-caption" class="polaroid-caption hand-drawn" style="text-align: center; position: absolute; bottom: 1rem; width: 100%; left: 0; font-size: 3rem;"></div>
         </div>
     </div>
 

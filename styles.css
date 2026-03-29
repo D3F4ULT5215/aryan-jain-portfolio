@@ -56,7 +56,7 @@ body {
     border: 2px solid #fff;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 999999;
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
     transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
@@ -69,7 +69,15 @@ body {
     height: 60px;
     background-color: #fff; /* Keep solid white to invert text underneath */
     border-color: #fff;
-    opacity: 0.9; /* Slight opacity shift if desired, but solid works best for difference */
+    opacity: 0.9; 
+}
+
+.custom-cursor.image-hovering {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: #000;
+    mix-blend-mode: normal; /* Remove difference so it does not disappear on gray images */
 }
 
 /* --- NAVIGATION --- */
@@ -530,6 +538,38 @@ body {
     100% { transform: translateY(-120vh); opacity: 0; }
 }
 
+/* --- LEGO DECORATIONS --- */
+.lego-block {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--lego-color, #e53e3e);
+    border-radius: 2px;
+    box-shadow: 
+        inset -3px -3px 0 rgba(0,0,0,0.2), 
+        inset 3px 3px 0 rgba(255,255,255,0.4),
+        5px 10px 15px rgba(0,0,0,0.3);
+    z-index: 20;
+}
+
+.lego-block::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 8px;
+    width: 12px;
+    height: 6px;
+    background: var(--lego-color, #e53e3e);
+    border-radius: 2px 2px 0 0;
+    box-shadow: 
+        16px 0 0 var(--lego-color, #e53e3e),
+        32px 0 0 var(--lego-color, #e53e3e);
+}
+
+.lego-blue { --lego-color: #3182ce; }
+.lego-yellow { --lego-color: #ecc94b; }
+.lego-red { --lego-color: #e53e3e; }
+
 /* --- EXPERIENCE SECTION --- */
 .experience-section {
     padding: 8rem 4rem;
@@ -941,6 +981,19 @@ body {
 
 .resume-modal.active .resume-polaroid {
     transform: translateY(0) rotate(0deg) scale(1); /* Set straight for readable resume */
+}
+
+/* Base styles for project pop-up modal to animate sliding up */
+.project-modal-polaroid {
+    z-index: 2;
+    background-color: #fff;
+    margin: auto; /* Vertically and horizontally align */
+    transform: translateY(100vh) rotate(5deg) scale(0.8);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.resume-modal.active .project-modal-polaroid {
+    transform: translateY(0) rotate(0deg) scale(1);
 }
 
 .resume-placeholder {
