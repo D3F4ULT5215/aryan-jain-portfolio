@@ -1,0 +1,1198 @@
+/* --- CSS RESET & BASE VARIABLES --- */
+:root {
+    --bg-color: #E5E4E3;
+    --text-primary: #000000;
+    --text-secondary: #8B8B8B;
+    --font-heading: 'Anton', sans-serif;
+    --font-mono: 'Azeret Mono', monospace;
+    --font-hand: 'Caveat', cursive;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Hide default cursor for standard elements */
+}
+
+a, button {
+    cursor: none; /* Let custom cursor handle hovering */
+}
+
+/* Disable Global Horizontal Scrolling that occurs on trackpads */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -ms-overflow-style: none;  /* IE and Edge hide scrollbar */
+    scrollbar-width: none;  /* Firefox hide scrollbar */
+}
+
+/* Chrome, Safari, Opera hide scrollbar globally */
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.4;
+    cursor: none !important; /* hide default cursor for custom one */
+}
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                background-color 0.3s ease;
+}
+
+.custom-cursor.hovering {
+    width: 60px;
+    height: 60px;
+    background-color: #fff; /* Keep solid white to invert text underneath */
+    border-color: #fff;
+    opacity: 0.9; /* Slight opacity shift if desired, but solid works best for difference */
+}
+
+/* --- NAVIGATION --- */
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+}
+
+.nav-email {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.nav-email::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-email:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    color: #ccc;
+}
+
+.magnetic {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth return */
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    min-height: 100vh;
+    padding: 10rem 4rem 4rem 4rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-bg-text {
+    position: absolute;
+    left: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-heading);
+    font-size: 15vw; /* Massive text */
+    line-height: 0.8;
+    color: rgba(0, 0, 0, 0.05); /* very light */
+    z-index: 0;
+    pointer-events: none;
+    letter-spacing: -2px;
+}
+
+/* MARQUEE BACKGROUND */
+.marquee-bg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%; /* Never use 100vw for absolute elements to avoid scrollbar jump */
+    overflow: hidden;
+    transform: translateY(-50%) rotate(-2deg);
+    z-index: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0.05; /* Barely visible */
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollMarquee 20s linear infinite;
+}
+
+.marquee-track span {
+    font-family: var(--font-heading);
+    font-size: 15vw;
+    padding-right: 50px;
+    color: var(--text-primary);
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); } /* Since we duplicated 3 times, scroll 1/3 */
+}
+
+/* PARALLAX ACCENTS */
+.parallax-accent {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 6rem;
+    color: var(--text-secondary);
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+    gap: 4rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.hero-text-block {
+    flex: 1.5;
+    max-width: 800px;
+}
+
+.hero-text-block h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 2rem;
+    color: #2b2b2b;
+}
+
+.hero-subtext {
+    font-size: 2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* POLAROID STYLES */
+.polaroid {
+    background: #fff;
+    padding: 1rem 1rem 3.5rem 1rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: rotate(var(--rotation, 0deg));
+}
+
+.tilt-left { --rotation: -5deg; }
+.tilt-right { --rotation: 5deg; }
+
+.polaroid:hover {
+    transform: scale(1.05) rotate(calc(var(--rotation) * 0.5));
+    z-index: 50;
+}
+
+.polaroid-image {
+    width: 350px;
+    height: 380px;
+    background-color: #eee; /* placeholder background */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+}
+
+/* Placeholder Generative backgrounds */
+.hero-placeholder {
+    background-image: repeating-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc),
+                      repeating-linear-gradient(45deg, #ccc 25%, #eee 25%, #eee 75%, #ccc 75%, #ccc);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+}
+.project-placeholder-1 {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+.project-placeholder-2 {
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+.drag-placeholder {
+    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+}
+
+.polaroid-caption.hand-drawn {
+    font-family: var(--font-hand);
+    font-size: 2rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0.5rem;
+    width: 100%;
+    left: 0;
+    color: #333;
+}
+
+/* --- SCROLL INDICATOR --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-wheel {
+    animation: scrollAnimation 2s infinite ease-in-out;
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(6px); opacity: 0; }
+    51% { transform: translateY(-6px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* --- SELECTED WORK & FOOTER COMMON VERTICAL TITLES --- */
+.work-section, .footer-section {
+    padding: 8rem 4rem;
+    position: relative;
+    display: flex;
+    gap: 4rem;
+    min-height: 100vh;
+}
+
+@media (min-width: 1025px) {
+    .work-section {
+        padding-right: 480px; /* Physically reserve space for the 400px globe so it NEVER overlaps text */
+    }
+}
+
+/* --- DARK THEME FOR WORK SECTION --- */
+.work-section {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+}
+.work-section .vertical-title {
+    color: var(--bg-color);
+}
+.work-section .project-details {
+    color: #ccc;
+}
+.work-section .project-details .achievement {
+    color: var(--bg-color);
+}
+.work-section .tag {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    box-shadow: 2px 2px 0 rgba(255,255,255,0.5);
+}
+
+/* INTERACTIVE GLOBE */
+.globe-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass to text underneath */
+    display: flex;
+    justify-content: flex-end; /* Pin to the right */
+    padding: 8rem 4rem; /* Match the exact work-section padding to align perfectly with the first project */
+    z-index: 0; /* Keep it behind important text */
+}
+
+#globe-render {
+    position: sticky;
+    top: calc(50vh - 200px); /* Center vertically acting fixed while scrolling */
+    width: 400px;
+    height: 400px;
+    pointer-events: auto; /* Allow dragging */
+    cursor: grab;
+}
+
+#globe-render:active {
+    cursor: grabbing;
+}
+
+.vertical-title-container {
+    width: 80px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.vertical-title {
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    line-height: 1;
+    letter-spacing: 5px;
+    color: var(--text-primary);
+}
+
+/* --- SELECTED WORK LIST --- */
+.projects-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15rem; /* Large gap for dramatic scroll */
+    position: relative;
+    z-index: 1; /* Above globe container */
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+    transform: translateZ(0); /* Force hardware layer to prevent text shifting midway during scroll */
+    -webkit-font-smoothing: antialiased;
+}
+
+.project-item:nth-child(even) {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 10vw; /* Pushes the project elements right, uncovering the bubble-zone */
+    flex-direction: row-reverse;
+    transform: translateX(8vw) translateZ(0); /* Replaced relative offset to prevent flex bounding-box shifts */
+}
+
+.project-item:nth-child(odd) {
+    justify-content: center;
+    padding-left: 10vw;
+}
+
+.project-details {
+    max-width: 400px;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.project-details p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.project-details .achievement {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 1.5rem;
+}
+
+.polaroid-tags {
+    position: absolute;
+    top: 2rem;
+    left: -2rem; /* offset outside */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.tag {
+    background: #000;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transform: rotate(-10deg);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+/* --- BUBBLE MINI-GAME --- */
+.bubble-zone {
+    position: absolute;
+    left: -10vw; /* Sit to the far left of Project 2 */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    pointer-events: none; /* Ignore pure zone clicks so surrounding text isn't blocked completely */
+    z-index: 5;
+    overflow: visible;
+}
+
+.interactive-bubble-wrapper {
+   position: absolute;
+   top: 100%; /* Start below the zone */
+   animation: floatUp 15s linear infinite;
+   pointer-events: none;
+}
+
+.interactive-bubble {
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   /* Realistic Soap Bubble Styling */
+   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.02) 80%);
+   border: 1px solid rgba(255,255,255,0.6);
+   box-shadow: 
+        inset -5px -5px 15px rgba(0,0,0,0.05), 
+        inset 5px 5px 15px rgba(255,255,255,0.8),
+        0 4px 10px rgba(0,0,0,0.05);
+   backdrop-filter: blur(2px);
+   pointer-events: auto; /* bubbles themselves can be clicked */
+   cursor: crosshair;
+   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease-out;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.interactive-bubble:hover {
+    transform: scale(1.1); /* Subtle grow so they know it's clickable */
+}
+
+/* Playful POP ME guidance text inside some bubbles */
+.bubble-text {
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    opacity: 0.8;
+    pointer-events: none;
+    user-select: none;
+    transform: rotate(-10deg);
+}
+
+.interactive-bubble.popped {
+   transform: scale(2.5);
+   opacity: 0 !important; /* Force invisible */
+   pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* --- EXPERIENCE SECTION --- */
+.experience-section {
+    padding: 8rem 4rem;
+    position: relative;
+    display: flex;
+    gap: 4rem;
+    min-height: 100vh;
+}
+
+.experience-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.experience-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 4px solid var(--text-primary);
+}
+
+.experience-item {
+    padding: 3rem 1rem;
+    border-bottom: 4px solid var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: auto /* Keep base cursor logic */;
+}
+
+/* Hover Invert Effect */
+.experience-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--text-primary);
+    z-index: 0;
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.experience-item:hover::before {
+    width: 100%;
+}
+
+.exp-header, .exp-body {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.experience-item:hover .exp-role,
+.experience-item:hover .exp-company,
+.experience-item:hover .exp-date,
+.experience-item:hover .exp-body p {
+    color: var(--bg-color) !important;
+}
+
+.experience-item:hover .tag {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    box-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.exp-role {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.exp-company {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.exp-date {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.exp-body {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.exp-body ul {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #444;
+    padding-left: 1.5rem;
+    list-style-type: square;
+    margin: 0;
+}
+
+.exp-body ul li {
+    margin-bottom: 0.5rem;
+}
+
+.experience-item:hover .exp-body ul {
+    color: var(--bg-color) !important;
+}
+
+.exp-body .polaroid-tags {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* --- HUGE TROPHY LINK --- */
+.trophy-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 6rem 0 4rem 0;
+}
+
+.trophy-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: auto;
+}
+
+.trophy-link:hover {
+    transform: scale(1.1) rotate(3deg);
+    color: var(--text-secondary);
+}
+
+.huge-trophy {
+    font-size: 12rem;
+    line-height: 1;
+    text-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+}
+
+.trophy-text {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+
+/* --- FOOTER SECTION --- */
+.footer-section {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+}
+.footer-section .vertical-title {
+    color: var(--bg-color);
+}
+
+.footer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.footer-cta {
+    font-family: var(--font-heading);
+    font-size: 10vw;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 2rem;
+    color: var(--bg-color);
+}
+
+.footer-links {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    width: 350px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+}
+
+.hand-drawn-link {
+    font-family: var(--font-hand);
+    font-size: 2.5rem;
+    color: var(--bg-color);
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.hand-drawn-link:hover {
+    transform: scale(1.1) rotate(2deg);
+    color: #aaa;
+}
+
+/* DRAGGABLE POLAROID */
+.draggable {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    cursor: grab; /* Overrides global cursor here just for fun or we handle in JS */
+    z-index: 100;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+/* --- PAGE TRANSITION --- */
+.page-transition {
+    position: fixed;
+    top: 100vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--text-primary);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+}
+
+.page-transition.active {
+    top: 0;
+    pointer-events: all;
+}
+
+.page-transition.exit {
+    top: -100vh;
+}
+
+.transition-text {
+    color: var(--bg-color);
+    font-family: var(--font-heading);
+    font-size: 8vw;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    letter-spacing: 5px;
+}
+
+/* --- RESPONSIVE RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .hero-text-block h1 {
+        font-size: 2.5rem;
+    }
+    .hero-subtext {
+        font-size: 1.5rem;
+    }
+    .projects-list {
+        gap: 6rem;
+    }
+    .project-item, .project-item:nth-child(even), .project-item:nth-child(odd) {
+         flex-direction: column !important;
+         justify-content: center;
+         padding: 0;
+         gap: 2rem;
+         text-align: center;
+    }
+    .footer-cta {
+         font-size: 15vw;
+    }
+    .work-section, .experience-section, .footer-section {
+        flex-direction: column;
+    }
+    .exp-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .exp-role {
+        font-size: 2.5rem;
+    }
+    .exp-body {
+        flex-direction: column;
+    }
+    .vertical-title-container {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .vertical-title {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        gap: 5px;
+        position: static;
+    }
+    .vertical-title span { display: inline; }
+    .vertical-title br { display: none; }
+    
+    .bubble-zone {
+        display: none; /* Bubbles hid on mobile for clarity */
+    }
+    
+    .draggable {
+        position: relative;
+        right: auto;
+        top: auto;
+        margin-top: 4rem;
+        align-self: center;
+    }
+    
+    .globe-container {
+         position: relative;
+         width: 100%;
+         height: 400px;
+         padding: 0; /* Remove absolute padding adjustments for mobile */
+         pointer-events: auto;
+         justify-content: center;
+         margin-bottom: 4rem;
+         order: -1; /* move it above the projects list on mobile */
+    }
+    #globe-render {
+         position: relative;
+         top: auto;
+    }
+}
+
+/* --- RESUME MODAL --- */
+.resume-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center so it can naturally scroll downward */
+    overflow-y: auto; /* Let the modal container itself scroll! */
+    transition: opacity 0.4s ease;
+}
+
+.resume-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.resume-modal-backdrop {
+    position: fixed; /* Keeps backdrop stationary during vertical scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(229, 228, 227, 0.85); /* Glass effect matches theme */
+    backdrop-filter: blur(8px);
+    cursor: auto /* Allows custom cursor to trigger */;
+}
+
+.resume-polaroid {
+    position: relative;
+    max-width: 1200px; /* Safe upper cap for ultra-widescreens */
+    width: 90vw; /* Perfect readable width */
+    height: auto; /* Remove 95vh height limit so it can span fully */
+    margin: 5vh auto; /* Push away from the very top */
+    padding: 2rem;
+    z-index: 2;
+    transform: translateY(100vh) rotate(3deg) scale(0.9);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: #fff;
+    cursor: auto !important; /* Suspend transparent cursor */
+}
+
+.resume-modal.active .resume-polaroid {
+    transform: translateY(0) rotate(0deg) scale(1); /* Set straight for readable resume */
+}
+
+.resume-placeholder {
+    width: 100%;
+    height: 125vw; /* Math: 90vw width * 1.414 (A4 Ratio) = roughly 125vw height! Flawless native scaling. */
+    max-height: 1700px; /* Keep it grounded on 4K screens */
+    background: repeating-linear-gradient(45deg, rgba(0,0,0,0.05), rgba(0,0,0,0.05) 10px, transparent 10px, transparent 20px) #f0f0f0;
+    border: 3px solid var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.resume-placeholder .placeholder-text {
+    font-family: var(--font-hand);
+    font-size: 3rem; /* bigger placeholder text */
+    color: var(--text-primary);
+    transform: rotate(-5deg);
+}
+
+
+
+.resume-caption {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.resume-title {
+    font-family: var(--font-hand);
+    color: white; /* Target color for math inversion */
+    mix-blend-mode: difference; /* Automatically swaps to White on Black, and Black on White! */
+    font-size: 3.5rem; /* Slightly larger for even more visibility */
+    font-weight: 800;
+    transform: rotate(-3deg);
+    margin-top: 5px;
+}
+
+.resume-download-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin-top: 10px;
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    cursor: none !important;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.resume-download-btn:hover {
+    background-color: #333;
+    transform: scale(1.05) rotate(2deg);
+}
+
+.close-btn {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.5rem;
+    cursor: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+    z-index: 3;
+}
+
+.close-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .resume-polaroid {
+        padding: 1rem;
+        height: 80vh;
+    }
+    
+    .resume-caption {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding-top: 0.5rem;
+    }
+    
+    .resume-title { font-size: 2rem; margin-top: 0;}
+    .resume-download-btn { padding: 0.8rem 1.5rem; font-size: 1rem; margin-top: 0;}
+}
+
+@media (max-width: 768px) {
+    .site-nav {
+         padding: 1rem 2rem;
+         flex-direction: column;
+         gap: 1rem;
+    }
+    .hero-section {
+         padding: 8rem 2rem 2rem 2rem;
+    }
+    .polaroid-image {
+         width: 250px;
+         height: 280px;
+    }
+    .polaroid-caption.hand-drawn {
+         font-size: 1.5rem;
+    }
+}
+
+/* --- FLIPBOOK --- */
+.book-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.site-nav-achievements {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    padding: 2rem 4rem; z-index: 1000;
+    display: flex; justify-content: space-between;
+}
+
+.back-link {
+    font-family: var(--font-mono);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+.back-link:hover { color: #aaa; }
+
+.book-container {
+    width: 600px;
+    height: 400px;
+    perspective: 2000px; /* 3D effect base */
+    position: relative;
+    z-index: 10;
+    transform: translateY(20px);
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    transform-style: preserve-3d;
+}
+
+.paper {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: auto; 
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    border: 4px solid var(--text-primary);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.back {
+    z-index: 1;
+    transform: rotateY(180deg);
+}
+
+/* Hardcover styling */
+#p1 .front, #p4 .front {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    border: 4px solid var(--bg-color);
+}
+#p1 .front .cover-title, #p4 .front .cover-title {
+    color: var(--bg-color);
+}
+.cover-title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 0.9;
+    text-align: center;
+    letter-spacing: -2px;
+}
+
+/* Cert pages */
+.cert-name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1;
+    margin: 1rem 0;
+    color: var(--text-primary);
+}
+
+.cert-stamp {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: rgb(70, 70, 70);
+    transform: rotate(-10deg);
+    margin-top: 2rem;
+    border: 2px solid rgb(70, 70, 70);
+    padding: 0.5rem 1rem;
+    letter-spacing: 2px;
+}
+
+/* Page flipping class applied by JS */
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Base layering */
+#p1 { z-index: 6; }
+#p2 { z-index: 5; }
+#p3 { z-index: 4; }
+#p4 { z-index: 3; }
+
+@media(max-width: 1024px) {
+    .book-container { width: 90vw; height: 50vh; }
+    .cover-title { font-size: 3rem; }
+    .cert-name { font-size: 1.5rem; }
+}

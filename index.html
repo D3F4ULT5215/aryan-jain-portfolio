@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Jain — Portfolio</title>
+    <meta name="description"
+        content="Aryan Jain is a Computer Science Engineer with strong foundations in machine learning and web development.">
+    <!-- Google Fonts for Typography Replication -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="page-transition">
+        <div class="transition-text" id="transition-text">LOADING</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor"></div>
+
+    <div class="smooth-scroll-wrapper" id="scroll-wrapper">
+
+        <!-- Navigation -->
+        <nav class="site-nav">
+            <a href="mailto:aryanjain5215@gmail.com" class="nav-email">aryanjain5215@gmail.com</a>
+            <div class="nav-links">
+                <a href="#hero">Index</a>
+                <a href="#work">Work</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <!-- Infinite Scrolling Marquee -->
+            <div class="marquee-bg">
+                <div class="marquee-track">
+                    <span>A.I. RESEARCHER • WEB DEVELOPER • PROBLEM SOLVER • </span>
+                    <span>A.I. RESEARCHER • WEB DEVELOPER • PROBLEM SOLVER • </span>
+                    <span>A.I. RESEARCHER • WEB DEVELOPER • PROBLEM SOLVER • </span>
+                </div>
+            </div>
+
+            <!-- Parallax Floating Accents -->
+            <div class="parallax-accent" data-speed="0.8" style="top: 15%; left: 8%;">*</div>
+            <div class="parallax-accent" data-speed="-1.2" style="top: 75%; right: 12%;">+</div>
+
+            <!-- Background Decorative Elements -->
+            <div class="hero-bg-text" style="font-size: 10vw;">COMPUTER SCIENCE<br>ENGINEER</div>
+
+            <div class="hero-content">
+                <div class="hero-text-block">
+                    <h1>I build intelligent systems and web applications, blending robust engineering with modern
+                        functionality to create scalable solutions.</h1>
+                    <p class="hero-subtext">I am a Computer Science undergraduate experienced in AI systems, Web
+                        Development, and Machine Learning.</p>
+                </div>
+
+                <div class="hero-image-block">
+                    <div class="polaroid tilt-left" style="--rotation: -7deg;">
+                        <div class="polaroid-image" style="background-image: url('aryan-jain-profile.jpeg');"></div>
+                        <div class="polaroid-caption hand-drawn">Aryan Jain</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="22" height="38" rx="11" stroke="#212427" stroke-width="2" />
+                    <circle class="scroll-wheel" cx="12" cy="12" r="3" fill="#212427" />
+                    <path class="scroll-arrow" d="M12 28L12 34M12 34L9 31M12 34L15 31" stroke="#212427" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- Selected Work Section -->
+        <section id="work" class="work-section">
+            <!-- Parallax Floating Accents -->
+            <div class="parallax-accent" data-speed="1.5" style="top: 20%; right: 8%;">*</div>
+            <div class="parallax-accent" data-speed="-0.5" style="top: 85%; left: 10%;">+</div>
+
+            <div class="vertical-title-container">
+                <h2 class="vertical-title">
+                    <span>P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span><span>S</span>
+                </h2>
+            </div>
+
+            <div class="projects-list">
+                <!-- Project 1 -->
+                <div class="project-item">
+                    <div class="polaroid project-polaroid tilt-right" style="--rotation: 5deg;">
+                        <div class="polaroid-image project-placeholder-1"></div>
+                        <div class="polaroid-caption hand-drawn">AI Traffic System</div>
+                        <div class="polaroid-tags">
+                            <span class="tag">PYTHON / ML</span>
+                            <span class="tag">HACKATHON WIN</span>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <p>Designed an AI-driven traffic optimization system to analyze vehicle density and dynamically control signal timing. Implemented real-time machine learning models for congestion estimation.</p>
+                        <p class="achievement">🏆 1st Runner-Up at Smart India Hackathon 2024</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-item" style="position: relative;">
+                    <!-- BUBBLE ZONE -->
+                    <div id="bubble-zone" class="bubble-zone"></div>
+                    
+                    <div class="polaroid project-polaroid tilt-left" style="--rotation: -4deg;">
+                        <div class="polaroid-image project-placeholder-2"></div>
+                        <div class="polaroid-caption hand-drawn">RAG Application</div>
+                        <div class="polaroid-tags">
+                            <span class="tag">LLMs / RAG</span>
+                            <span class="tag">LNM HACKS</span>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <p>Built a retrieval-augmented generation system combining document retrieval with large language models. Reduced hallucinations by restricting the AI to retrieved knowledge sources.</p>
+                        <p class="achievement">🚀 Finalist at LNM Hacks 7.0 </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Globe -->
+            <div class="globe-container">
+                <div id="globe-render"></div>
+            </div>
+            
+        </section>
+
+        <!-- Experience / Internships Section -->
+        <section id="experience" class="experience-section">
+            <div class="vertical-title-container">
+                <h2 class="vertical-title">
+                    <span>E</span><span>X</span><span>P</span><span>E</span><span>R</span><span>I</span><span>E</span><span>N</span><span>C</span><span>E</span>
+                </h2>
+            </div>
+
+            <div class="experience-container">
+                <div class="experience-list">
+                    <!-- Experience 1 -->
+                    <div class="experience-item">
+                        <div class="exp-header">
+                            <div class="exp-role">Frontend Developer Intern</div>
+                            <div class="exp-company">Unify Workflows</div>
+                            <div class="exp-date">May 2025 — June 2025</div>
+                        </div>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Developed responsive and user-friendly web interfaces using HTML, CSS, JavaScript, and PHP</li>
+                                <li>Implemented frontend components to improve usability, layout consistency, and cross-device compatibility</li>
+                                <li>Collaborated on frontend-backend integration to ensure smooth user interactions and data flow</li>
+                            </ul>
+                            <div class="polaroid-tags">
+                                <span class="tag">HTML / CSS</span>
+                                <span class="tag">JAVASCRIPT</span>
+                                <span class="tag">PHP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="experience-item">
+                        <div class="exp-header">
+                            <div class="exp-role">Web Development Intern</div>
+                            <div class="exp-company">GaoTek</div>
+                            <div class="exp-date">May 2025 — June 2025</div>
+                        </div>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Built and deployed an e-commerce website using WordPress and WooCommerce supporting product listings and checkout workflows</li>
+                                <li>Customized themes and layouts to improve responsiveness, navigation, and user experience</li>
+                            </ul>
+                            <div class="polaroid-tags">
+                                <span class="tag">WORDPRESS</span>
+                                <span class="tag">WOOCOMMERCE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trophy Button -->
+                <div class="trophy-container">
+                    <a href="achievements.html" class="trophy-link magnetic">
+                        <div class="huge-trophy">🏆</div>
+                        <h3 class="trophy-text">ACHIEVEMENTS</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <section id="contact" class="footer-section">
+            <div class="vertical-title-container">
+                <h2 class="vertical-title">
+                    <span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span><br><br><span>M</span><span>E</span>
+                </h2>
+            </div>
+            <div class="footer-content">
+                <h2 class="footer-cta">LETS WORK<br>TOGETHER</h2>
+                <div class="footer-links">
+                    <a href="mailto:aryanjain5215@gmail.com?subject=Let's%20Work%20Together"
+                        class="hand-drawn-link">EMAIL</a>
+                    <a href="https://linkedin.com/in/aryan-jain-334443307" class="hand-drawn-link"
+                        target="_blank">LINKEDIN</a>
+                    <a href="aryan-jain-resume.pdf" class="hand-drawn-link" target="_blank">RESUME</a>
+                </div>
+                <!-- Draggable Polaroid -->
+                <div id="draggable-polaroid" class="polaroid draggable" style="--rotation: 12deg;">
+                    <div class="polaroid-image drag-placeholder" style="background-image: url('aryan-jain-portrait.jpeg'); background-size: cover; background-position: center; border: none;"></div>
+                    <div class="polaroid-caption hand-drawn">Drag Me!</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Resume Polaroid Modal -->
+    <div id="resume-modal" class="resume-modal">
+        <div class="resume-modal-backdrop" id="close-resume-backdrop"></div>
+        <div class="polaroid resume-polaroid" style="--rotation: 0deg;">
+            <button id="close-resume-btn" class="close-btn">X</button>
+            <embed src="aryan-jain-resume.pdf#view=FitH" type="application/pdf" width="100%" height="100%" class="polaroid-image resume-placeholder" data-lenis-prevent>
+            <div class="polaroid-caption hand-drawn resume-caption">
+                <div class="resume-title">Aryan Jain</div>
+                <a href="aryan-jain-resume.pdf" download class="resume-download-btn">DOWNLOAD RESUME</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Lenis Smooth Scrolling Library -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Globe.gl Integration for Realistic Earth -->
+    <script src="https://unpkg.com/globe.gl"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const globeContainer = document.getElementById("globe-render");
+            if (globeContainer) {
+                const world = Globe()
+                    (globeContainer)
+                    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-day.jpg')
+                    .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+                    .backgroundColor('rgba(0,0,0,0)')
+                    .showAtmosphere(true)
+                    .atmosphereColor('lightskyblue')
+                    .atmosphereAltitude(0.25)
+                    .width(400)
+                    .height(400);
+
+                // Setup auto-rotate and disable scroll zooming
+                world.controls().autoRotate = true;
+                world.controls().autoRotateSpeed = 1.5;
+                world.controls().enableZoom = false;
+                
+                // Add drag cursors
+                globeContainer.addEventListener('mousedown', () => globeContainer.style.cursor = 'grabbing');
+                globeContainer.addEventListener('mouseup', () => globeContainer.style.cursor = 'grab');
+            }
+        });
+    </script>
+</body>
+</html>

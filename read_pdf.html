@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <style>
+      body { white-space: pre-wrap; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div id="status">Loading...</div>
+  <div id="output"></div>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    
+    async function extractText() {
+      try {
+        const loadingTask = pdfjsLib.getDocument('aryan-jain-resume.pdf');
+        const pdf = await loadingTask.promise;
+        let fullText = '';
+        
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const textContent = await page.getTextContent();
+          
+          // Reconstruct lines somewhat reasonably
+          let lastY = -1;
+          for (let item of textContent.items) {
+              if (lastY !== item.transform[5] && lastY !== -1) {
+                  fullText += '\n';
+              }
+              fullText += item.str;
+              lastY = item.transform[5];
+          }
+          fullText += '\n\n';
+        }
+        
+        document.getElementById('status').innerText = 'Done';
+        document.getElementById('output').innerText = fullText;
+        
+      } catch (err) {
+        document.getElementById('status').innerText = 'Error: ' + err.message;
+      }
+    }
+    extractText();
+  </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements — Aryan Jain</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Lock scrolling on this page for the interactive flipbook experience */
+        body { overflow: hidden; }
+    </style>
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="page-transition">
+        <div class="transition-text" id="transition-text">LOADING</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor"></div>
+
+    <section class="book-section">
+        <!-- Navigation -->
+        <nav class="site-nav-achievements nav-links">
+            <a href="index.html#experience" class="back-link magnetic" style="display: inline-block;">← BACK TO PORTFOLIO</a>
+        </nav>
+
+        <!-- Flipbook Container -->
+        <div class="book-container">
+            <div class="book">
+                <!-- PAPER 1 (Cover / Inside Front Cover) -->
+                <div class="paper" id="p1">
+                    <div class="front">
+                        <div class="cover-title">MY<br>CERTIFICATES</div>
+                        <p style="font-family: var(--font-mono); margin-top: 2rem;">CLICK RIGHT EDGE TO OPEN →</p>
+                    </div>
+                    <div class="back">
+                        <div class="cert-name">C Language<br>Certification</div>
+                        <div class="cert-stamp">VERIFIED</div>
+                        <div class="turn-hint">← BACK</div>
+                    </div>
+                </div>
+
+                <!-- PAPER 2 -->
+                <div class="paper" id="p2">
+                    <div class="front">
+                        <div class="cert-name">Python<br>Certification</div>
+                        <div class="cert-stamp">VERIFIED</div>
+                        <div class="turn-hint">NEXT →</div>
+                    </div>
+                    <div class="back">
+                        <div class="cert-name">Introduction to<br>Java</div>
+                        <div class="cert-stamp">VERIFIED</div>
+                        <div class="turn-hint">← BACK</div>
+                    </div>
+                </div>
+
+                <!-- PAPER 3 -->
+                <div class="paper" id="p3">
+                    <div class="front">
+                        <div class="cert-name">Introduction to<br>Machine Learning</div>
+                        <div class="cert-stamp">VERIFIED</div>
+                        <div class="turn-hint">NEXT →</div>
+                    </div>
+                    <div class="back">
+                        <div class="cert-name">Introduction to<br>Operating Systems</div>
+                        <div class="cert-stamp">VERIFIED</div>
+                        <div class="turn-hint">← BACK</div>
+                    </div>
+                </div>
+
+                <!-- PAPER 4 (Back Cover) -->
+                <div class="paper" id="p4">
+                    <div class="front">
+                        <div class="cover-title">END</div>
+                        <p style="font-family: var(--font-mono); margin-top: 2rem;">ALL CERTIFICATES LISTED</p>
+                        <div class="turn-hint" style="color:var(--bg-color)">← BACK</div>
+                    </div>
+                    <div class="back">
+                        <!-- Empty back of the last page -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lenis Smooth Scrolling Library -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    
+    <!-- Global Scripts (Cursor, Transition, etc.) -->
+    <script src="script.js"></script>
+    
+    <!-- Flipbook Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Uncover the page if loaded via transition overlay (it starts visually open, but js logic might assume active)
+            const overlay = document.getElementById('page-transition');
+            if(overlay) {
+                // If the user arrived here from index.html transition, we can do a quick slide-out animation to match
+                // since index.html transitioned *in* then *changed location*.
+            }
+
+            const papers = [
+                document.getElementById('p1'),
+                document.getElementById('p2'),
+                document.getElementById('p3'),
+                document.getElementById('p4')
+            ];
+
+            let currentLocation = 1;
+            const numOfPapers = papers.length;
+            const maxLocation = numOfPapers + 1;
+
+            papers.forEach((paper, index) => {
+                paper.addEventListener('click', () => {
+                    const pageLocation = index + 1;
+                    
+                    // Clicking to go forward
+                    if (currentLocation === pageLocation) {
+                        if(currentLocation < maxLocation) {
+                            paper.classList.add('flipped');
+                            // Update z-indexes instantly for the paper that's flipping so it shows over everything else
+                            paper.style.zIndex = maxLocation + 1; 
+                            setTimeout(() => {
+                                paper.style.zIndex = numOfPapers - index; 
+                            }, 400); // Wait till halfway through animation to drop to normal flipped stack layout
+                            currentLocation++;
+                        }
+                    } 
+                    // Clicking to go backward
+                    else if (currentLocation === pageLocation + 1) {
+                        if(currentLocation > 1) {
+                            paper.classList.remove('flipped');
+                            paper.style.zIndex = maxLocation + 1;
+                            setTimeout(() => {
+                                paper.style.zIndex = numOfPapers - index + 10;
+                            }, 400); // Same for coming back
+                            currentLocation--;
+                        }
+                    }
+                });
+                
+                // Add magnetic custom cursor hover
+                paper.addEventListener('mouseenter', () => document.getElementById('cursor').classList.add('hovering'));
+                paper.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('hovering'));
+            });
+        });
+    </script>
+</body>
+</html>
