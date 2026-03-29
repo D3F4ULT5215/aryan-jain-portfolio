@@ -806,9 +806,10 @@ body {
 /* DRAGGABLE POLAROID */
 .draggable {
     position: absolute;
-    right: 10%;
-    top: 30%;
-    cursor: grab; /* Overrides global cursor here just for fun or we handle in JS */
+    right: 5%; /* Pushed to the edge */
+    top: 50%;
+    margin-top: -200px; /* Vertically centered using classic margin to avoid transform conflicts with drag JS */
+    cursor: grab;
     z-index: 100;
 }
 
