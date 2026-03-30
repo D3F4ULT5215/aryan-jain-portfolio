@@ -854,6 +854,10 @@ body {
 
 /* --- RESPONSIVE RESPONSIVE --- */
 @media (max-width: 1024px) {
+    /* Hide lego decorations on mobile to prevent overflow */
+    .lego-block {
+        display: none !important;
+    }
     .hero-content {
         flex-direction: column;
         align-items: flex-start;
@@ -873,9 +877,28 @@ body {
          padding: 0;
          gap: 2rem;
          text-align: center;
+         transform: none !important;
     }
     .footer-cta {
          font-size: 15vw;
+         text-align: center;
+         margin-bottom: 2rem;
+    }
+    .footer-content {
+         width: 100%;
+         align-items: center;
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+    }
+    .footer-links {
+         position: relative;
+         right: auto;
+         top: auto;
+         width: 100%;
+         height: auto;
+         order: 3;
+         gap: 1.5rem;
     }
     .work-section, .experience-section, .footer-section {
         flex-direction: column;
@@ -912,8 +935,10 @@ body {
         position: relative;
         right: auto;
         top: auto;
-        margin-top: 4rem;
+        margin-top: 0;
         align-self: center;
+        order: 2;
+        margin-bottom: 1rem;
     }
     
     .globe-container {
@@ -1114,6 +1139,17 @@ body {
     }
     .polaroid-caption.hand-drawn {
          font-size: 1.5rem;
+    }
+    .work-section {
+         padding: 4rem 1rem;
+    }
+    .experience-section, .footer-section {
+         padding: 4rem 2rem;
+    }
+    .projects-list {
+         padding-left: 0;
+         padding-right: 0;
+         width: 100%;
     }
 }
 
