@@ -861,7 +861,7 @@ body {
     .lego-block, .lego-wrapper {
         display: none !important;
     }
-    .custom-cursor {
+    .custom-cursor, .hide-on-mobile {
         display: none !important;
     }
     * {
