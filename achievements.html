@@ -146,17 +146,20 @@
             bookContainer.addEventListener('mouseleave', () => document.getElementById('cursor').classList.remove('hovering'));
 
             setTimeout(() => {
+                const isMobile = window.innerWidth <= 768;
+                
                 // Initialize StPageFlip
                 const pageFlip = new St.PageFlip(document.getElementById('book'), {
-                    width: Math.min(600, window.innerWidth * 0.45), // Base dimensions
-                    height: Math.min(800, window.innerHeight * 0.8),
+                    width: isMobile ? window.innerWidth * 0.95 : Math.min(600, window.innerWidth * 0.45), // Base dimensions
+                    height: isMobile ? window.innerHeight * 0.75 : Math.min(800, window.innerHeight * 0.8),
                     size: "stretch", // Stretches to container
-                    minWidth: 300,
-                    maxWidth: 700,
+                    minWidth: 280,
+                    maxWidth: isMobile ? 600 : 700,
                     minHeight: 400,
                     maxHeight: 900,
                     maxShadowOpacity: 0.5,
                     showCover: true,
+                    usePortrait: true, // Forces single-page view on narrow mobile screens
                     mobileScrollSupport: false // Disable scrolling on the book
                 });
 

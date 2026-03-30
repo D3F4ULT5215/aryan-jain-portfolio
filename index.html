@@ -271,10 +271,10 @@
     <!-- Achievements Modal -->
     <div id="achievements-modal" class="resume-modal" style="align-items: center;">
         <div class="resume-modal-backdrop" id="close-achievements-backdrop"></div>
-        <div class="polaroid resume-polaroid" style="--rotation: 2deg; max-width: 900px; padding: 3rem;">
+        <div class="polaroid resume-polaroid achievements-polaroid-custom" style="--rotation: 2deg; max-width: 900px;">
             <button id="close-achievements-btn" class="close-btn" style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; background: none; border: none; font-family: var(--font-heading); color: var(--text-primary); z-index: 10;">X</button>
-            <h2 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 2rem; text-align: center; color: var(--text-primary); text-transform: uppercase;">Certifications</h2>
-            <ul style="font-family: var(--font-mono); font-size: 1.2rem; line-height: 2.5; list-style-position: inside; color: #333; margin-bottom: 2rem; text-align: left;">
+            <h2 class="achievements-modal-title" style="font-family: var(--font-heading); margin-bottom: 2rem; text-align: center; color: var(--text-primary); text-transform: uppercase;">Certifications</h2>
+            <ul class="achievements-modal-list" style="font-family: var(--font-mono); list-style-position: inside; color: #333; margin-bottom: 2rem; text-align: left;">
                 <li><strong>C Language</strong></li>
                 <li><strong>Python Basics</strong></li>
                 <li><strong>Intro to Java</strong></li>
@@ -290,10 +290,10 @@
     <!-- Project Image Modal -->
     <div id="project-modal" class="resume-modal" style="align-items: center;">
         <div class="resume-modal-backdrop" id="close-project-backdrop"></div>
-        <div class="polaroid project-modal-polaroid" style="--rotation: 0deg; max-width: 95vw; max-height: 95vh; padding: 1rem 1rem 5rem 1rem; position: relative;">
+        <div class="polaroid project-modal-polaroid" style="--rotation: 0deg; max-width: 95vw; max-height: 95vh; position: relative;">
             <button id="close-project-btn" class="close-btn" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); color: #333; z-index: 10;">X</button>
             <img id="project-modal-img" src="" alt="Project Image" style="max-width: 100%; max-height: calc(95vh - 6rem); object-fit: contain; display: block; background: #eee; border: 1px solid #ccc; cursor: none;">
-            <div id="project-modal-caption" class="polaroid-caption hand-drawn" style="text-align: center; position: absolute; bottom: 1rem; width: 100%; left: 0; font-size: 3rem;"></div>
+            <div id="project-modal-caption" class="polaroid-caption hand-drawn project-modal-caption-text" style="text-align: center; position: absolute; bottom: 1rem; width: 100%; left: 0;"></div>
         </div>
     </div>
 
