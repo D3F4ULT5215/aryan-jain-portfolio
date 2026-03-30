@@ -157,12 +157,12 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-family: var(--font-heading);
-    font-size: 15vw; /* Massive text */
+    font-size: 18vw; /* Massive text */
     line-height: 0.8;
     color: rgba(0, 0, 0, 0.05); /* very light */
     z-index: 0;
     pointer-events: none;
-    letter-spacing: -2px;
+    letter-spacing: -6px;
 }
 
 /* MARQUEE BACKGROUND */
@@ -187,8 +187,9 @@ body {
 
 .marquee-track span {
     font-family: var(--font-heading);
-    font-size: 15vw;
-    padding-right: 50px;
+    font-size: 18vw;
+    padding-right: 80px;
+    letter-spacing: -4px;
     color: var(--text-primary);
 }
 
@@ -225,9 +226,10 @@ body {
 }
 
 .hero-text-block h1 {
-    font-size: 3.5rem;
+    font-size: 5rem;
     font-weight: 700;
-    letter-spacing: -1px;
+    letter-spacing: -3px;
+    line-height: 1.0;
     margin-bottom: 2rem;
     color: #2b2b2b;
 }
@@ -259,8 +261,8 @@ body {
 }
 
 .polaroid-image {
-    width: 350px;
-    height: 380px;
+    width: 450px;
+    height: 520px;
     background-color: #eee; /* placeholder background */
     background-size: cover;
     background-position: center;
@@ -395,8 +397,9 @@ body {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     line-height: 1;
-    letter-spacing: 5px;
+    letter-spacing: 12px;
     color: var(--text-primary);
+    font-weight: 800;
 }
 
 /* --- SELECTED WORK LIST --- */
@@ -869,10 +872,12 @@ body {
         align-items: flex-start;
     }
     .hero-text-block h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        letter-spacing: -2px;
+        line-height: 1.05;
     }
     .hero-subtext {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
     .projects-list {
         gap: 6rem;
@@ -927,8 +932,10 @@ body {
         flex-direction: row;
         width: 100%;
         justify-content: center;
-        gap: 5px;
+        gap: 2px;
         position: static;
+        letter-spacing: 2px;
+        font-size: 1.2rem;
     }
     .vertical-title span { display: inline; }
     .vertical-title br { display: none; }
@@ -1164,12 +1171,18 @@ body {
     .hero-section {
          padding: 8rem 2rem 2rem 2rem;
     }
+    .polaroid {
+         width: 90vw;
+         max-width: 400px;
+         margin: 0 auto;
+    }
     .polaroid-image {
-         width: 250px;
-         height: 280px;
+         width: 100%;
+         height: 110vw;
+         max-height: 450px;
     }
     .polaroid-caption.hand-drawn {
-         font-size: 1.5rem;
+         font-size: 2rem;
     }
     .work-section {
          padding: 4rem 1rem;
