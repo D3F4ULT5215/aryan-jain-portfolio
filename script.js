@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const interactiveElements = document.querySelectorAll('a, button, .draggable, h1, h2, p, span, .polaroid-caption');
 
     document.addEventListener('mousemove', (e) => {
+        // Disable custom cursor explicitly on small max-width touch viewports
+        if (window.innerWidth <= 1024) return;
+        
         // Use 3D transform for hardware acceleration to eliminate all cursor lag
         cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
     });
@@ -309,7 +312,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Open modal on click
         resumeLinks.forEach(link => {
             if (!link.classList.contains('resume-download-btn')) { 
-                link.addEventListener('click', (e) => toggleModal(true, e));
+                link.addEventListener('click', (e) => {
+                     // Mobile browsers fail to render PDFs in embedded iframes/modals.
+                     // On mobile, bypass modal and let the default link open the PDF in a new tab!
+                     if (window.innerWidth <= 768) {
+                          return;
+                     }
+                     toggleModal(true, e);
+                });
             }
         });
 

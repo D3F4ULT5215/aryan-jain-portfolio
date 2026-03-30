@@ -858,6 +858,12 @@ body {
     .lego-block {
         display: none !important;
     }
+    .custom-cursor {
+        display: none !important;
+    }
+    * {
+        cursor: auto !important;
+    }
     .hero-content {
         flex-direction: column;
         align-items: flex-start;
