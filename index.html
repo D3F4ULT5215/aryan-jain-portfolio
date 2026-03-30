@@ -132,7 +132,7 @@
                 <!-- Project 3 -->
                 <div class="project-item" style="position: relative;">
                     <!-- LEFT LEGO DECORATION -->
-                    <div style="position: absolute; left: 2%; top: 50%; transform: translateY(-50%) rotate(-25deg); opacity: 1; z-index: 5; font-size: initial; color: initial; font-family: initial;">
+                    <div class="lego-wrapper" style="position: absolute; left: 2%; top: 50%; transform: translateY(-50%) rotate(-25deg); opacity: 1; z-index: 5; font-size: initial; color: initial; font-family: initial;">
                         <div class="lego-block lego-blue"></div>
                     </div>
                     
@@ -151,7 +151,7 @@
                     </div>
 
                     <!-- RIGHT LEGO DECORATION & TEXT -->
-                    <div style="position: absolute; right: -265px; top: 50%; transform: translateY(-50%) rotate(12deg); opacity: 1; z-index: 5; display: flex; flex-direction: column; align-items: center; font-size: initial; color: initial; font-family: initial; mix-blend-mode: normal;">
+                    <div class="lego-wrapper" style="position: absolute; right: -265px; top: 50%; transform: translateY(-50%) rotate(12deg); opacity: 1; z-index: 5; display: flex; flex-direction: column; align-items: center; font-size: initial; color: initial; font-family: initial; mix-blend-mode: normal;">
                         <h3 class="hand-drawn" style="font-size: 3rem; color: #e53e3e; transform: rotate(-5deg); white-space: nowrap; text-shadow: 2px 2px 0 var(--bg-color);">LET'S BUILD!</h3>
                         <div style="display: flex; gap: 8px; transform: rotate(8deg); margin-top: 20px;">
                             <div class="lego-block lego-yellow"></div>
@@ -219,12 +219,22 @@
                     </div>
                 </div>
 
-                <!-- Trophy Button -->
-                <div class="trophy-container">
-                    <a href="#achievements-modal" class="trophy-link magnetic" id="open-achievements-btn">
-                        <div class="huge-trophy">🏆</div>
-                        <h3 class="trophy-text">CERTIFICATION</h3>
-                    </a>
+                <!-- Certifications List -->
+                <div class="experience-item" style="cursor: default;">
+                    <div class="exp-header">
+                        <div class="exp-role">Certifications</div>
+                    </div>
+                    <div class="exp-body" style="justify-content: flex-start;">
+                        <ul>
+                            <li><strong>C Language</strong></li>
+                            <li><strong>Python Basics</strong></li>
+                            <li><strong>Intro to Java</strong></li>
+                            <li><strong>Machine Learning</strong></li>
+                            <li><strong>Operating Systems</strong></li>
+                            <li><strong>Innovation, Business Models and Entrepreneurship</strong></li>
+                            <li><strong>Ethics in Engineering Practice</strong></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -268,24 +278,7 @@
         </div>
     </div>
 
-    <!-- Achievements Modal -->
-    <div id="achievements-modal" class="resume-modal" style="align-items: center;">
-        <div class="resume-modal-backdrop" id="close-achievements-backdrop"></div>
-        <div class="polaroid resume-polaroid achievements-polaroid-custom" style="--rotation: 2deg; max-width: 900px;">
-            <button id="close-achievements-btn" class="close-btn" style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; background: none; border: none; font-family: var(--font-heading); color: var(--text-primary); z-index: 10;">X</button>
-            <h2 class="achievements-modal-title" style="font-family: var(--font-heading); margin-bottom: 2rem; text-align: center; color: var(--text-primary); text-transform: uppercase;">Certifications</h2>
-            <ul class="achievements-modal-list" style="font-family: var(--font-mono); list-style-position: inside; color: #333; margin-bottom: 2rem; text-align: left;">
-                <li><strong>C Language</strong></li>
-                <li><strong>Python Basics</strong></li>
-                <li><strong>Intro to Java</strong></li>
-                <li><strong>Machine Learning</strong></li>
-                <li><strong>Operating Systems</strong></li>
-                <li><strong>Innovation, Business Models and Entrepreneurship</strong></li>
-                <li><strong>Ethics in Engineering Practice</strong></li>
-            </ul>
-            <div class="polaroid-caption hand-drawn" style="text-align: center; position: relative;">My Achievements</div>
-        </div>
-    </div>
+
 
     <!-- Project Image Modal -->
     <div id="project-modal" class="resume-modal" style="align-items: center;">

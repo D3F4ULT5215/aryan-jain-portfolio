@@ -857,8 +857,8 @@ body {
 
 /* --- RESPONSIVE RESPONSIVE --- */
 @media (max-width: 1024px) {
-    /* Hide lego decorations on mobile to prevent overflow */
-    .lego-block {
+    /* Hide lego decorations and their containers on mobile to prevent overflow */
+    .lego-block, .lego-wrapper {
         display: none !important;
     }
     .custom-cursor {

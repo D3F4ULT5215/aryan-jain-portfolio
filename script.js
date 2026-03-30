@@ -335,35 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- 7. Achievements Modal Logic --- */
-    const achievementsBtn = document.getElementById('open-achievements-btn');
-    const achievementsModal = document.getElementById('achievements-modal');
-    const closeAchievementsBtn = document.getElementById('close-achievements-btn');
-    const achievementsBackdrop = document.getElementById('close-achievements-backdrop');
-
-    if (achievementsModal && achievementsBtn) {
-        const toggleAchievementsModal = (state, e) => {
-            if (e && e.preventDefault) e.preventDefault();
-            if (state) {
-                achievementsModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                achievementsModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        };
-
-        achievementsBtn.addEventListener('click', (e) => toggleAchievementsModal(true, e));
-        if (closeAchievementsBtn) closeAchievementsBtn.addEventListener('click', () => toggleAchievementsModal(false));
-        if (achievementsBackdrop) achievementsBackdrop.addEventListener('click', () => toggleAchievementsModal(false));
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && achievementsModal.classList.contains('active')) {
-                toggleAchievementsModal(false);
-            }
-        });
-    }
-
     /* --- 8. Project Image Modal Logic --- */
     const projectPolaroids = document.querySelectorAll('.project-polaroid');
     const projectModal = document.getElementById('project-modal');
