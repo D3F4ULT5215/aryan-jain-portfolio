@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let startY = 0;
     let currentX = 0;
     let currentY = 0;
+    let maxDownwardY = Infinity;
 
     // Works for both MouseEvent and TouchEvent
     const getPoint = (e) => (e.touches && e.touches.length ? e.touches[0] : e);
@@ -91,6 +92,17 @@ document.addEventListener('DOMContentLoaded', () => {
         startY = point.clientY - currentY;
         draggable.style.cursor = 'grabbing';
         cursor.style.display = 'none'; // hide custom cursor during drag
+
+        // Even though the polaroid is position: absolute, its CSS transform
+        // still counts toward the page's scrollable height. Dragging it down
+        // far enough silently grows the document past its real end, leaving
+        // the page stuck showing blank space below the footer with nothing to
+        // scroll it back. Work out how far down it can move before that
+        // happens (with a margin for the rotate/scale(1.1) grow while dragging).
+        const rect = draggable.getBoundingClientRect();
+        const pageBottom = document.documentElement.scrollHeight;
+        const elementBottom = window.scrollY + rect.bottom;
+        maxDownwardY = Math.max(0, pageBottom - elementBottom - 60);
     };
 
     const moveDrag = (e) => {
@@ -100,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const point = getPoint(e);
         currentX = point.clientX - startX;
-        currentY = point.clientY - startY;
+        currentY = Math.min(point.clientY - startY, maxDownwardY);
 
         // Apply a slight extra rotation when dragging for physical feel
         const dragRotation = currentX * 0.05 + 12; // Base rotation was 12deg
