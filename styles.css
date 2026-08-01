@@ -24,6 +24,11 @@ a, button {
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    /* Stop the elastic rubber-band bounce at the top/bottom of the page on
+       mobile. Dragging the footer polaroid near the bottom edge was being
+       read as an attempt to scroll past the end, triggering the browser's
+       native overscroll bounce even though the drag itself was handled. */
+    overscroll-behavior-y: none;
     margin: 0;
     padding: 0;
     -ms-overflow-style: none;  /* IE and Edge hide scrollbar */
