@@ -150,6 +150,11 @@ body {
 /* --- HERO SECTION --- */
 .hero-section {
     min-height: 100vh;
+    /* dvh tracks the real visible viewport on iOS Safari, where 100vh is
+       sized against the toolbar-hidden viewport even while the toolbar is
+       showing - stacking several 100vh sections compounds that gap into a
+       large chunk of dead scrollable space at the end of the page. */
+    min-height: 100dvh;
     padding: 10rem 4rem 4rem 4rem;
     position: relative;
     display: flex;
@@ -332,6 +337,7 @@ body {
     display: flex;
     gap: 4rem;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 @media (min-width: 1025px) {
@@ -586,6 +592,7 @@ body {
     display: flex;
     gap: 4rem;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .experience-container {
