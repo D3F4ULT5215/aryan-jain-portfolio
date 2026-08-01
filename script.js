@@ -81,34 +81,50 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentX = 0;
     let currentY = 0;
 
-    draggable.addEventListener('mousedown', (e) => {
+    // Works for both MouseEvent and TouchEvent
+    const getPoint = (e) => (e.touches && e.touches.length ? e.touches[0] : e);
+
+    const startDrag = (e) => {
+        const point = getPoint(e);
         isDragging = true;
-        startX = e.clientX - currentX;
-        startY = e.clientY - currentY;
+        startX = point.clientX - currentX;
+        startY = point.clientY - currentY;
         draggable.style.cursor = 'grabbing';
         cursor.style.display = 'none'; // hide custom cursor during drag
-    });
+    };
 
-    document.addEventListener('mousemove', (e) => {
+    const moveDrag = (e) => {
         if (!isDragging) return;
+        // Stop Lenis/the page from scrolling underneath the drag gesture on touch
+        if (e.cancelable) e.preventDefault();
 
-        currentX = e.clientX - startX;
-        currentY = e.clientY - startY;
+        const point = getPoint(e);
+        currentX = point.clientX - startX;
+        currentY = point.clientY - startY;
 
         // Apply a slight extra rotation when dragging for physical feel
         const dragRotation = currentX * 0.05 + 12; // Base rotation was 12deg
         draggable.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${dragRotation}deg) scale(1.1)`;
         draggable.style.zIndex = '1000';
-    });
+    };
 
-    document.addEventListener('mouseup', () => {
-        if(isDragging) {
+    const endDrag = () => {
+        if (isDragging) {
             isDragging = false;
             draggable.style.cursor = 'grab';
             draggable.style.transform = `translate(${currentX}px, ${currentY}px) rotate(12deg) scale(1)`;
             cursor.style.display = 'block'; // show custom cursor again
         }
-    });
+    };
+
+    draggable.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', moveDrag);
+    document.addEventListener('mouseup', endDrag);
+
+    draggable.addEventListener('touchstart', startDrag, { passive: true });
+    document.addEventListener('touchmove', moveDrag, { passive: false });
+    document.addEventListener('touchend', endDrag);
+    document.addEventListener('touchcancel', endDrag);
 
     /* --- 3. Scroll Reveal Animations (Intersection Observer) --- */
     const observerOptions = {

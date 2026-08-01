@@ -374,8 +374,10 @@ body {
     top: calc(50vh - 200px); /* Center vertically acting fixed while scrolling */
     width: 400px;
     height: 400px;
+    max-width: 100%;
     pointer-events: auto; /* Allow dragging */
     cursor: grab;
+    touch-action: none; /* Rotating the globe on touch shouldn't also scroll the page */
 }
 
 #globe-render:active {
@@ -814,6 +816,7 @@ body {
     margin-top: -200px; /* Vertically centered using classic margin to avoid transform conflicts with drag JS */
     cursor: grab;
     z-index: 100;
+    touch-action: none; /* Stop the browser from panning/scrolling the page while dragging on touch */
 }
 
 .draggable:active {
@@ -944,7 +947,19 @@ body {
     .bubble-zone {
         display: none; /* Bubbles hid on mobile for clarity */
     }
-    
+
+    /* Project polaroid-tags were offset outside the card (left: -2rem), which
+       pushed them off the edge of narrow viewports and clipped them against
+       the global overflow-x: hidden. Center them above the card instead. */
+    .project-polaroid .polaroid-tags {
+        left: 50%;
+        top: -1.5rem;
+        transform: translateX(-50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
     .draggable {
         position: relative;
         right: auto;
